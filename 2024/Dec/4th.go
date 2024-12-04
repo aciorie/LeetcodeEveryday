@@ -40,21 +40,15 @@ func CanMakeSubsequence(str1 string, str2 string) bool {
 		return false
 	}
 
-	m, n := len(str1), len(str2)
 	j := 0
-
-	for i := 0; i < m; i++ {
-		if j == n {
-			return true
-		}
-		if match(str1[i], str2[j]) {
+	for i := 0; i < len(str1); i++ {
+		if j < len(str2) && match(str1[i], str2[j]) {
 			j++
 		}
 	}
 
-	return j == n
+	return j == len(str2)
 }
-
 func match(a, b byte) bool {
 	return a == b || a+1 == b
 }
