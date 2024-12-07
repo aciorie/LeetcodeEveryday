@@ -23,5 +23,10 @@ func TestSearchMatrix(t *testing.T) {
 		if res2 != input.expected {
 			t.Errorf("Matrix:%v,target:%v,expected:%v,got:%v", input.matrix, input.target, input.expected, res)
 		}
+
+		res3 := SearchMatrix3(input.matrix, input.target)
+		if res3 != input.expected {
+			t.Errorf("Matrix:%v,target:%v,expected:%v,got:%v", input.matrix, input.target, input.expected, res)
+		}
 	}
 }
