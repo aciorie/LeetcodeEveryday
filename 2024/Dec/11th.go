@@ -1,5 +1,9 @@
 package Dec
 
+import (
+	"sort"
+)
+
 /*
 2779. Maximum Beauty of an Array After Applying Operation
 Medium
@@ -42,7 +46,9 @@ Constraints:
 0 <= nums[i], k <= 105
 */
 
-/* wrong attempt 1
+/*
+	wrong attempt 1
+
 Wrong Answer	89 / 621 testcases passed
 
 Input		nums =	[52,34]		k =	21
@@ -70,7 +76,7 @@ func MaximumBeauty(nums []int, k int) int {
 	return res
 }
 
-//Time Limit Exceeded	608 / 621 testcases passed
+// Time Limit Exceeded	608 / 621 testcases passed
 func MaximumBeauty2(nums []int, k int) int {
 	//find its boundries
 	minVal, maxVal := 0, 0
@@ -101,4 +107,27 @@ func MaximumBeauty2(nums []int, k int) int {
 	}
 
 	return res
+}
+
+func MaximumBeauty3(nums []int, k int) int {
+	sort.Ints(nums)
+	l := 0
+	ma := 1
+
+	for r := 0; r < len(nums); r++ {
+		for nums[l]+k < nums[r]-k {
+			l++
+		}
+
+		ma = max(r-l+1, ma)
+	}
+
+	return ma
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
