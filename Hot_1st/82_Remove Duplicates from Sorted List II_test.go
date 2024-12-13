@@ -15,6 +15,7 @@ func createList(arr []int) *ListNode {
 	return head
 }
 
+//this may be a wrong test function
 func TestDeleteDuplicates(t *testing.T) {
 	inputs := []struct {
 		head     *ListNode
