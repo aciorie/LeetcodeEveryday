@@ -1,5 +1,7 @@
 package hot
 
+import "container/list"
+
 /*
 Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
 
@@ -25,6 +27,33 @@ The number of nodes in the tree is in the range [0, 2000].
 
 func LevelOrder(root *TreeNode) [][]int {
 	var res [][]int
+
+	if root == nil {
+		return res
+	}
+
+	queue := list.New()
+	queue.PushBack(root)
+
+	for queue.Len() > 0 {
+		levelSize := queue.Len()
+		var level []int
+
+		for i := 0; i < levelSize; i++ {
+			node := queue.Remove(queue.Front()).(*TreeNode)
+			level = append(level, node.Val)
+
+			if node.Left != nil {
+				queue.PushBack(node.Left)
+			}
+
+			if node.Right != nil {
+				queue.PushBack(node.Right)
+			}
+		}
+
+		res = append(res, level)
+	}
 
 	return res
 }

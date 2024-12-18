@@ -39,6 +39,7 @@ Constraints:
 1 <= prices[i] <= 1000
 */
 
+//failed appempt
 func FinalPrices(prices []int) []int {
 	if len(prices) == 1 {
 		return prices
@@ -57,4 +58,24 @@ func FinalPrices(prices []int) []int {
 		}
 	}
 	return answer
+}
+
+//followed one of the solution
+func finalPrices(prices []int) []int {
+	if len(prices) == 1 {
+		return prices
+	}
+
+	stack := []int{}
+
+	for i := 0; i < len(prices); i++ {
+		for len(stack) > 0 && prices[stack[len(stack)-1]] >= prices[i] {
+			index := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			prices[index] -= prices[i]
+		}
+		stack = append(stack, i)
+	}
+
+	return prices
 }
