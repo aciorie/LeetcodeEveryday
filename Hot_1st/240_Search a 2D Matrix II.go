@@ -56,3 +56,26 @@ func colBinarySearch(arr []int, target int) bool {
 	}
 	return false
 }
+
+func SearchMatrix_240_2(matrix [][]int, target int) bool {
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return false
+	}
+
+	m := len(matrix)
+	n := len(matrix[0])
+
+	// Start from top right
+	row, col := 0, n-1
+	for row < m && col >= 0 {
+		if matrix[row][col] == target {
+			return true
+		} else if matrix[row][col] > target {
+			col--
+		} else {
+			row++
+		}
+	}
+
+	return false
+}

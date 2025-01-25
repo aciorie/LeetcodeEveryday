@@ -2,7 +2,7 @@ package hot
 
 import "testing"
 
-func TestSearchMatrix_240(t *testing.T) {
+func TestSearchMatrix_240_2(t *testing.T) {
 	inputs := []struct {
 		matrix [][]int
 		target int
