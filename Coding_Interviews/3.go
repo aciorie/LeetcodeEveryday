@@ -12,7 +12,7 @@ Output:
 */
 
 // Hash map
-func solution1(arr []int) int {
+func solution3_1(arr []int) int {
 	occur := make(map[int]bool)
 	for i := 0; ; i++ {
 		if occur[arr[i]] {
@@ -23,7 +23,7 @@ func solution1(arr []int) int {
 }
 
 // Sort
-func solution2(arr []int) int {
+func solution3_2(arr []int) int {
 	res := quicksort(arr)
 	for i := 0; i < len(res)-1; i++ {
 		if res[i] == res[i+1] {
@@ -50,7 +50,7 @@ func quicksort(arr []int) []int {
 }
 
 // Swap in place
-func solution3(nums []int) int {
+func solution3_3(nums []int) int {
 	// The loop will continue until the return statement is triggered.
 	for i := 0; ; i++ {
 		// If the value of nums[i] is not equal to i, then the element is not in the correct position.
