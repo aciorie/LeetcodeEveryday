@@ -76,22 +76,28 @@ Expected
 func QueryResults(limit int, queries [][]int) []int {
 	// colors of balls
 	ballMap := make(map[int]int)
-	// various colors
+	colorCounts := make(map[int]int)
 	colorMap := make(map[int]struct{})
 	res := make([]int, len(queries))
 
 	for i, query := range queries {
-		x, y := query[0], query[1] //index and color
+		x, y := query[0], query[1]
 
-		// if x doesn't have color / have a different color
-		if currentColor, exists := ballMap[x]; !exists || currentColor != y {
-			if exists {
+		currentColor, exists := ballMap[x]
+		if exists {
+			colorCounts[currentColor]--
+			if colorCounts[currentColor] == 0 {
+				delete(colorCounts, currentColor)
 				delete(colorMap, currentColor)
 			}
-			// update color
-			ballMap[x] = y
+		}
+
+		ballMap[x] = y
+		colorCounts[y]++
+		if colorCounts[y] == 1 {
 			colorMap[y] = struct{}{}
 		}
+
 		res[i] = len(colorMap)
 	}
 	return res
