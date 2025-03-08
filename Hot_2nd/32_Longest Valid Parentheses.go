@@ -1,5 +1,6 @@
 package hot2nd
 
+// failed one
 func longestValidParentheses(s string) int {
 	if len(s) < 2 {
 		return 0
@@ -21,5 +22,5 @@ func longestValidParentheses(s string) int {
 			}
 		}
 	}
-	
+	return res
 }
