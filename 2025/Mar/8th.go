@@ -63,11 +63,11 @@ func MinimumRecolors(blocks string, k int) int {
 	// dp[i]=min(dp[i],dp[i−k]+number of white blocks that need to be turned black)
 	for i := 0; i < n; i++ {
 		if i >= k-1 {
-			whiteInWindow := whiteNum[i+1] - whiteNum[i-k+1] // The number of white blocks in the current window
-			dp[i] = min(dp[i], whiteInWindow)                // Update dp[i] to the number of white blocks in the current window
-			if i > 0 {
-				dp[i] = min(dp[i], dp[i-1])
-			}
+			// whiteInWindow := whiteNum[i+1] - whiteNum[i-k+1] // The number of white blocks in the current window
+			// dp[i] = min(dp[i], whiteInWindow)                // Update dp[i] to the number of white blocks in the current window
+			// if i > 0 {
+			// 	dp[i] = min(dp[i], dp[i-1])
+			// }
 		}
 	}
 
