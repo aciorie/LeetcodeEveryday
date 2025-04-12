@@ -1,0 +1,13 @@
+package hot2nd
+
+func maxDepth(root *TreeNode) int {
+	return traverse(root, 0)
+}
+
+func traverse(root *TreeNode, depth int) int {
+	if root == nil {
+		return depth
+	}
+	leftDepth, rightDepth := traverse(root.Left, depth+1), traverse(root.Right, depth+1)
+	return max(leftDepth, rightDepth)
+}
