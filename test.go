@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-func main() {
+func main2() {
 	var count int         // 普通的 int 变量
 	var mu sync.Mutex     // 保护 count 变量的互斥锁
 	var wg sync.WaitGroup // WaitGroup 用于等待所有 Goroutine 完成
