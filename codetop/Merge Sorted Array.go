@@ -1,6 +1,6 @@
 package codetop
 
-func merge(nums1 []int, m int, nums2 []int, n int) {
+func merge_forget(nums1 []int, m int, nums2 []int, n int) {
 	if n == 0 {
 		return
 	}
