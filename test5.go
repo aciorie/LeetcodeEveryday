@@ -6,11 +6,15 @@ import (
 	"time"
 )
 
+/*
+4启动 2个groutine 2秒后取消， 第一个协程1秒执行完，
+第二个协程3秒执行完。
+思路：采用ctx, _ := context.WithTimeout(context.Background(), 
+time.Second*2)实现2s取消。协程执行完后通过channel通知，是否超时。
+*/
 func f1(in chan struct{}) {
-
-	time.Sleep(1 * time.Second)
+	time.Sleep(time.Second)
 	in <- struct{}{}
-
 }
 
 func f2(in chan struct{}) {
@@ -18,9 +22,8 @@ func f2(in chan struct{}) {
 	in <- struct{}{}
 }
 
-func main() {
-	ch1 := make(chan struct{})
-	ch2 := make(chan struct{})
+func main5() {
+	ch1, ch2 := make(chan struct{}), make(chan struct{})
 	ctx, _ := context.WithTimeout(context.Background(), 2*time.Second)
 
 	go func() {
@@ -32,6 +35,7 @@ func main() {
 		case <-ch1:
 			fmt.Println("f1 done")
 		}
+
 	}()
 
 	go func() {
@@ -40,9 +44,10 @@ func main() {
 		case <-ctx.Done():
 			fmt.Println("f2 timeout")
 			break
-		case <-ch2:
+		case <-ch1:
 			fmt.Println("f2 done")
 		}
+
 	}()
 	time.Sleep(time.Second * 5)
 }

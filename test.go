@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
-func main2() {
+func main1() {
 	var count int         // 普通的 int 变量
 	var mu sync.Mutex     // 保护 count 变量的互斥锁
 	var wg sync.WaitGroup // WaitGroup 用于等待所有 Goroutine 完成
@@ -25,8 +26,8 @@ func main2() {
 				mu.Lock() // 加锁
 				count++   // 增加 count
 				fmt.Println("id: %d , count: %d ", workerID, count)
-				mu.Unlock() // 解锁
-				// time.Sleep(time.Microsecond) // 模拟一些工作，让并发冲突更明显
+				mu.Unlock()                  // 解锁
+				time.Sleep(time.Microsecond) // 模拟一些工作，让并发冲突更明显
 			}
 			fmt.Printf("Goroutine %d: 计数完成。\n", workerID)
 		}(i + 1) // 从 1 开始编号 Goroutine
@@ -43,3 +44,4 @@ func main2() {
 	fmt.Printf("预期计数: %d\n", numWorkers*incrementsPerWorker)
 	fmt.Println("--------------------------------------")
 }
+
