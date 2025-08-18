@@ -1,0 +1,13 @@
+package codetop
+
+func maxDepth(root *TreeNode) int {
+	return traverse(root, 0)
+}
+
+func traverse(root *TreeNode, depth int) int {
+	if root == nil {
+		return depth
+	}
+	leftdep, rightdep := traverse(root.Left, depth+1), traverse(root.Right, depth+1)
+	return max(leftdep, rightdep)
+}
