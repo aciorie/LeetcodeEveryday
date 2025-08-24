@@ -25,7 +25,7 @@ func printNum() {
 	}
 }
 
-func main() {
+func main2() {
 	go printLetter()
 	go printNum()
 	word <- struct{}{}
