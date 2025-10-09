@@ -38,6 +38,6 @@ func WithInt1(int1 int) Option {
 	}
 }
 
-func main() {
+func main5() {
 	InitOptions(WithString1("ace"), WithInt1(5))
 }
